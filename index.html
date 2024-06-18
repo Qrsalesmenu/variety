@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Will You Marry Me</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Courier+Prime&display=swap");
         body,
@@ -17,108 +18,8 @@
             background-color: black; /* Fondo negro antes de la activación */
             overflow: hidden;
         }
-        .container, .mobile-message {
+        .mobile-message {
             display: none;
-        }
-        .container {
-            text-align: center;
-            color: #fff;
-            animation: fadeIn 2s ease-in-out;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            position: relative;
-        }
-        h1 {
-            font-family: "Courier Prime", monospace;
-            font-size: 3em; /* Reducido para asegurar que el texto completo se muestra */
-            margin-bottom: 20px;
-        }
-        .typing {
-            border-right: .15em solid orange;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typing 7s steps(30, end) forwards, blink-caret .75s step-end infinite;
-            animation-delay: 7s; /* Retraso antes de comenzar a escribir */
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: orange; }
-        }
-        .photos {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .photos img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-        .photos img:hover {
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        .bubbles {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            display: none;
-            justify-content: space-around;
-        }
-        .bubble {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            animation: rise 5s infinite;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        .bubble:nth-child(2n) {
-            width: 20px;
-            height: 20px;
-            animation-duration: 4s;
-        }
-        .bubble:nth-child(3n) {
-            width: 60px;
-            height: 60px;
-            animation-duration: 6s;
-        }
-        @keyframes rise {
-            0% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
-        }
-        .rose {
-            position: absolute;
-            bottom: -10px;
-            right: -10px;
-            width: 150px;
-            height: auto;
-            transform: rotate(20deg);
         }
         .mobile-message {
             text-align: center;
@@ -129,6 +30,14 @@
             font-size: 3em;
             animation: bounce 2s infinite;
         }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
         @keyframes bounce {
             0%, 100% {
                 transform: translateY(0);
@@ -136,6 +45,151 @@
             50% {
                 transform: translateY(-20px);
             }
+        }
+        /* New Design Styles */
+        *+html {
+            margin: 0px;
+            padding: 0px;
+        }
+        @font-face {
+            font-family: point-panther-bold;
+            font-weight: bold;
+            src: url(point-panther-bold.ttf),
+                url('point-panther-bold.otf') format('otf');
+        }
+        @font-face {
+            font-family: monday;
+            font-weight: normal;
+            src: url(monday.otf);
+        }
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, header, footer, section, nav {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style: none;
+        }
+        body {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            background: white;
+            text-align: left;
+        }
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
+        .container {
+            max-width: 100%;
+            position: relative;
+            margin: 0 auto;
+        }
+        @media (min-width:1199px){
+            .container {
+                max-width: 80%;
+            }
+        }
+        .image-blocks {
+            background: black;
+        }
+        .image-blocks ul {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .image-blocks ul li {
+            border-right: 1px solid white;
+        }
+        .image-blocks ul li:last-child {
+            border-right: 0px solid white;
+        }
+        .heart-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4% 0;
+            margin-bottom: 3%;
+        }
+        .heart {
+            z-index: 3;
+            position: relative;
+            animation: animate 3s linear infinite;
+            margin-left: auto;
+            margin-right: 18%;
+            width: 8%;
+        }
+        .absolute-area {
+            position: absolute;
+            bottom: 7%;
+        }
+        .mainImg {
+            position: relative;
+            z-index: 1;
+            margin-bottom: -5px;
+        }
+        @keyframes animate {
+            0% {
+                transform: scale(1);
+            }
+            20% {
+                transform: scale(.8);
+            }
+            40% {
+                transform: scale(1.5);
+            }
+            60% {
+                transform: scale(1);
+            }
+            80% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        h1, h2 {
+            display: block;
+            font-display: swap;
+        }
+        h1 {
+            font-family: monday;
+            font-size: 100px;
+        }
+        h2 {
+            font-family: point-panther-bold;
+            font-size: 72px;
+        }
+        .font-area {
+            position: absolute;
+            top: 4%;
+            width: 91%;
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            left: 50%;
+            margin-left: -45%;
+        }
+        .text-left, .text-right {
+            position: absolute;
+            top: 4%;
+            z-index: 3;
+        }
+        .text-left {
+            left: 0%;
+        }
+        .text-right {
+            width: 500px;
+            right: 0%;
+            text-align: center;
+        }
+        .text-right h1 {
+            text-align: center;
+            position: relative;
         }
     </style>
     <script type="module">
@@ -187,11 +241,33 @@
             const isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
             if (isMobile) {
                 document.querySelector('.mobile-message').style.display = 'block';
+                document.body.style.backgroundColor = "black";
             } else {
-                document.body.style.backgroundColor = "#f0f0f0";
-                document.getElementById("proposalContainer").style.display = "block";
-                document.querySelector(".bubbles").style.display = "flex";
-                typeEffect(document.querySelector('h1'), 200);
+                document.body.style.backgroundColor = "white";
+                // Insert the new design and content here
+                document.querySelector('.container').innerHTML = `
+                    <img src="main.png" class="mainImg" alt="">
+                    <div class="text-left">
+                        <h1 id="heading1"></h1>
+                    </div>
+                    <div class="text-right">
+                        <h1 id="heading2"></h1>
+                        <h2 id="heading3"></h2>
+                    </div>
+                    <div class="absolute-area">
+                        <div class="heart-area">
+                            <img src="heart.webp" class="heart" alt="">
+                        </div>
+                        <div class="image-blocks">
+                            <ul>
+                                <li><img src="img1.jpeg" alt=""></li>
+                                <li><img src="img1.jpeg" alt=""></li>
+                                <li><img src="img3.jpeg" alt=""></li>
+                                <li><img src="img4.jpeg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>`;
+                startAnimationWithDelay();
             }
             set(ref(database, "activation"), { activated: true });
             playMusic();
@@ -199,8 +275,6 @@
 
         function deactivateProposal() {
             document.body.style.backgroundColor = "black";
-            document.getElementById("proposalContainer").style.display = "none";
-            document.querySelector(".bubbles").style.display = "none";
             document.querySelector('.mobile-message').style.display = 'none';
             set(ref(database, "activation"), { activated: false });
             stopMusic();
@@ -224,18 +298,42 @@
             audio.currentTime = 0;
         }
 
-        function typeEffect(element, speed) {
-            const text = element.innerHTML;
-            element.innerHTML = "";
-            let i = 0;
-            const timer = setInterval(function() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(timer);
+        // Array of headings to display
+        const headings = [
+            "Glory",
+            "Will You",
+            "Marry Me?"
+        ];
+
+        // Function to start the animation sequence with initial delay
+        function startAnimationWithDelay() {
+            setTimeout(() => {
+                animateHeading(0); // Start animating the first heading after delay
+            }, 2000); // Initial delay of 2000 milliseconds (2 seconds)
+        }
+
+        // Function to animate each heading with a letter typing effect
+        function animateHeading(index) {
+            let heading = headings[index];
+            let element = document.getElementById(`heading${index + 1}`);
+            let letters = heading.split('');
+            let typingSpeed = 200; // Typing speed for each letter
+
+            letters.forEach((letter, idx) => {
+                setTimeout(() => {
+                    element.textContent += letter;
+                }, idx * typingSpeed);
+            });
+
+            // Calculate total animation time for current heading
+            let animationTime = letters.length * typingSpeed;
+
+            // Move to the next heading after current one finishes
+            setTimeout(() => {
+                if (index < headings.length - 1) {
+                    animateHeading(index + 1);
                 }
-            }, speed);
+            }, animationTime + 100); // Wait 1 second after current heading finishes
         }
 
         const activationRef = ref(database, "activation");
@@ -256,26 +354,12 @@
         <source src="./Music/Mazal.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
-    <div class="container" id="proposalContainer">
-        <h1 class="typing">Glory, Will You Marry Me?</h1>
-        <div class="photos">
-            <img src="./Images/1.JPG" alt="Photo 1" />
-            <img src="./Images/2.JPG" alt="Photo 2" />
-            <img src="./Images/3.JPG" alt="Photo 3" />
-            <img src="./Images/7.JPG" alt="Photo 7" />
-        </div>
-        <img class="rose" src="./Images/rose.png" alt="Rose" />
-    </div>
     <div class="mobile-message">
         <h1>Look Up</h1>
         <div class="arrow">⬆️</div>
     </div>
-    <div class="bubbles">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
+    <div class="container">
+        <!-- The new design and content will be injected here on activation -->
     </div>
 </body>
 </html>
