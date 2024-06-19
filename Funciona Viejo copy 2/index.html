@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Courier+Prime&display=swap");
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: "Great Vibes", cursive;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black; /* Fondo negro antes de la activación */
+        overflow: hidden;
+      }
+      .container,
+      .mobile-message {
+        display: none;
+      }
+      .container {
+        text-align: center;
+        color: #fff;
+        animation: fadeIn 2s ease-in-out;
+        padding: 40px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        max-width: 800px;
+        position: relative;
+      }
+      h1 {
+        font-family: "Courier Prime", monospace;
+        font-size: 3em; /* Reducido para asegurar que el texto completo se muestra */
+        margin-bottom: 20px;
+      }
+      .typing {
+        border-right: 0.15em solid orange;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        animation: typing 7s steps(30, end) forwards,
+          blink-caret 0.75s step-end infinite;
+        animation-delay: 7s; /* Retraso antes de comenzar a escribir */
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: orange;
+        }
+      }
+      .photos {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .photos img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+      .photos img:hover {
+        transform: scale(1.1);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .bubbles {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: none;
+        justify-content: space-around;
+      }
+      .bubble {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: rise 5s infinite;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+      .bubble:nth-child(2n) {
+        width: 20px;
+        height: 20px;
+        animation-duration: 4s;
+      }
+      .bubble:nth-child(3n) {
+        width: 60px;
+        height: 60px;
+        animation-duration: 6s;
+      }
+      @keyframes rise {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh);
+          opacity: 0;
+        }
+      }
+      .rose {
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        width: 150px;
+        height: auto;
+        transform: rotate(20deg);
+      }
+      .mobile-message {
+        text-align: center;
+        color: #fff;
+        animation: fadeIn 2s ease-in-out;
+      }
+      .arrow {
+        font-size: 3em;
+        animation: bounce 2s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+    </style>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyB5s02d9k74UBszvN7yY62bQLWXx3-vPHc",
+        authDomain: "prueba-42594.firebaseapp.com",
+        databaseURL: "https://prueba-42594-default-rtdb.firebaseio.com",
+        projectId: "prueba-42594",
+        storageBucket: "prueba-42594.appspot.com",
+        messagingSenderId: "89697442606",
+        appId: "1:89697442606:web:f5e0ea8c42ab78c405f8bf",
+        measurementId: "G-553VK9YX52",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+
+      function checkActivation() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const isActivated = urlParams.get("activated");
+        const isDeactivated = urlParams.get("deactivated");
+        if (isActivated === "true") {
+          askForMusic();
+        } else if (isDeactivated === "true") {
+          deactivateProposal();
+        }
+      }
+
+      function askForMusic() {
+        const formattedMessage =
+          "Ezra pregunta si te gustaría escuchar algo de música.";
+        let wantsMusic = false;
+        while (!wantsMusic) {
+          wantsMusic = confirm(formattedMessage);
+        }
+        if (wantsMusic) {
+          activateProposal();
+        }
+      }
+
+      function activateProposal() {
+        const isMobile = window.matchMedia(
+          "only screen and (max-width: 768px)"
+        ).matches;
+        if (isMobile) {
+          document.querySelector(".mobile-message").style.display = "block";
+        } else {
+          document.body.style.backgroundColor = "#f0f0f0";
+          fetch("index2.html")
+            .then((response) => response.text())
+            .then((data) => {
+              document.open();
+              document.write(data);
+              document.close();
+            })
+            .catch((error) =>
+              console.error("Error loading index2.html:", error)
+            );
+        }
+        set(ref(database, "activation"), { activated: true });
+        playMusic();
+      }
+
+      function deactivateProposal() {
+        document.body.style.backgroundColor = "black";
+        document.getElementById("proposalContainer").style.display = "none";
+        document.querySelector(".bubbles").style.display = "none";
+        document.querySelector(".mobile-message").style.display = "none";
+        set(ref(database, "activation"), { activated: false });
+        stopMusic();
+      }
+
+      function playMusic() {
+        const audio = document.getElementById("backgroundMusic");
+        audio
+          .play()
+          .then(() => {
+            console.log("Música reproduciéndose");
+          })
+          .catch((error) => {
+            console.error("Error al reproducir la música:", error);
+          });
+      }
+
+      function stopMusic() {
+        const audio = document.getElementById("backgroundMusic");
+        audio.pause();
+        audio.currentTime = 0;
+      }
+
+      function typeEffect(element, speed) {
+        const text = element.innerHTML;
+        element.innerHTML = "";
+        let i = 0;
+        const timer = setInterval(function () {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(timer);
+          }
+        }, speed);
+      }
+
+      const activationRef = ref(database, "activation");
+      onValue(activationRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data && data.activated) {
+          activateProposal();
+        } else {
+          deactivateProposal();
+        }
+      });
+
+      window.onload = checkActivation;
+    </script>
+  </head>
+  <body>
+    <audio id="backgroundMusic" loop>
+      <source src="./Music/Mazal.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <div class="container" id="proposalContainer">
+      <h1 class="typing">Glory, Will You Marry Me?</h1>
+      <div class="photos">
+        <img src="./Images/1.JPG" alt="Photo 1" />
+        <img src="./Images/2.JPG" alt="Photo 2" />
+        <img src="./Images/3.JPG" alt="Photo 3" />
+        <img src="./Images/7.JPG" alt="Photo 7" />
+      </div>
+      <img class="rose" src="./Images/rose.png" alt="Rose" />
+    </div>
+    <div class="mobile-message">
+      <h1>Look Up</h1>
+      <div class="arrow">⬆️</div>
+    </div>
+    <div class="bubbles">
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+      <div class="bubble"></div>
+    </div>
+  </body>
+</html>
