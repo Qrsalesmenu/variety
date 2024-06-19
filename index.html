@@ -1,251 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Will You Marry Me</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Courier+Prime&display=swap");
-        body,
-        html {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: "Great Vibes", cursive;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black; /* Fondo negro antes de la activación */
-            overflow: hidden;
+      @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Courier+Prime&display=swap");
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: "Great Vibes", cursive;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black; /* Fondo negro antes de la activación */
+        overflow: hidden;
+      }
+      .mobile-message {
+        display: none;
+        text-align: center;
+        color: #fff;
+        animation: fadeIn 2s ease-in-out;
+        font-family: "point-panther-bold", sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .arrow {
+        font-size: 3em;
+        animation: bounce 2s infinite;
+        display: block;
+        margin: 0 auto;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
-        .mobile-message {
-            display: none;
+        to {
+          opacity: 1;
         }
-        .mobile-message {
-            text-align: center;
-            color: #fff;
-            animation: fadeIn 2s ease-in-out;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-        .arrow {
-            font-size: 3em;
-            animation: bounce 2s infinite;
+        50% {
+          transform: translateY(-20px);
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-        /* New Design Styles */
-        *+html {
-            margin: 0px;
-            padding: 0px;
-        }
-        @font-face {
-            font-family: point-panther-bold;
-            font-weight: bold;
-            src: url(point-panther-bold.ttf),
-                url('point-panther-bold.otf') format('otf');
-        }
-        @font-face {
-            font-family: monday;
-            font-weight: normal;
-            src: url(monday.otf);
-        }
-        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, header, footer, section, nav {
-            margin: 0;
-            padding: 0;
-        }
-        li {
-            list-style: none;
-        }
-        body {
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            overflow-x: hidden;
-            background: white;
-            text-align: left;
-        }
-        img {
-            width: 100%;
-            max-width: 100%;
-        }
+      }
+      /* New Design Styles */
+      * + html {
+        margin: 0px;
+        padding: 0px;
+      }
+      @font-face {
+        font-family: point-panther-bold;
+        font-weight: bold;
+        src: url(point-panther-bold.ttf),
+          url("point-panther-bold.otf") format("otf");
+      }
+      @font-face {
+        font-family: monday;
+        font-weight: normal;
+        src: url(monday.otf);
+      }
+      body,
+      div,
+      dl,
+      dt,
+      dd,
+      ul,
+      ol,
+      li,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      pre,
+      code,
+      form,
+      fieldset,
+      legend,
+      input,
+      textarea,
+      p,
+      blockquote,
+      th,
+      td,
+      header,
+      footer,
+      section,
+      nav {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        background: white;
+        text-align: left;
+      }
+      img {
+        width: 100%;
+        max-width: 100%;
+      }
+      .container {
+        max-width: 100%;
+        position: relative;
+        margin: 0 auto;
+      }
+      @media (min-width: 1199px) {
         .container {
-            max-width: 100%;
-            position: relative;
-            margin: 0 auto;
+          max-width: 80%;
         }
-        @media (min-width:1199px){
-            .container {
-                max-width: 80%;
-            }
+      }
+      .image-blocks {
+        background: black;
+      }
+      .image-blocks ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .image-blocks ul li {
+        border-right: 1px solid white;
+      }
+      .image-blocks ul li:last-child {
+        border-right: 0px solid white;
+      }
+      .heart-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 4% 0;
+        margin-bottom: 3%;
+      }
+      .heart {
+        z-index: 3;
+        position: relative;
+        animation: animate 3s linear infinite;
+        margin-left: auto;
+        margin-right: 18%;
+        width: 8%;
+      }
+      .absolute-area {
+        position: absolute;
+        bottom: 7%;
+      }
+      .mainImg {
+        position: relative;
+        z-index: 1;
+        margin-bottom: -5px;
+      }
+      @keyframes animate {
+        0% {
+          transform: scale(1);
         }
-        .image-blocks {
-            background: black;
+        20% {
+          transform: scale(0.8);
         }
-        .image-blocks ul {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+        40% {
+          transform: scale(1.5);
         }
-        .image-blocks ul li {
-            border-right: 1px solid white;
+        60% {
+          transform: scale(1);
         }
-        .image-blocks ul li:last-child {
-            border-right: 0px solid white;
+        80% {
+          transform: scale(1.3);
         }
-        .heart-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 4% 0;
-            margin-bottom: 3%;
+        100% {
+          transform: scale(1);
         }
-        .heart {
-            z-index: 3;
-            position: relative;
-            animation: animate 3s linear infinite;
-            margin-left: auto;
-            margin-right: 18%;
-            width: 8%;
-        }
-        .absolute-area {
-            position: absolute;
-            bottom: 7%;
-        }
-        .mainImg {
-            position: relative;
-            z-index: 1;
-            margin-bottom: -5px;
-        }
-        @keyframes animate {
-            0% {
-                transform: scale(1);
-            }
-            20% {
-                transform: scale(.8);
-            }
-            40% {
-                transform: scale(1.5);
-            }
-            60% {
-                transform: scale(1);
-            }
-            80% {
-                transform: scale(1.3);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        h1, h2 {
-            display: block;
-            font-display: swap;
-        }
-        h1 {
-            font-family: monday;
-            font-size: 100px;
-        }
-        h2 {
-            font-family: point-panther-bold;
-            font-size: 72px;
-        }
-        .font-area {
-            position: absolute;
-            top: 4%;
-            width: 91%;
-            z-index: 3;
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            left: 50%;
-            margin-left: -45%;
-        }
-        .text-left, .text-right {
-            position: absolute;
-            top: 4%;
-            z-index: 3;
-        }
-        .text-left {
-            left: 0%;
-        }
-        .text-right {
-            width: 500px;
-            right: 0%;
-            text-align: center;
-        }
-        .text-right h1 {
-            text-align: center;
-            position: relative;
-        }
+      }
+      h1,
+      h2 {
+        display: block;
+        font-display: swap;
+      }
+      h1 {
+        font-family: monday;
+        font-size: 100px;
+      }
+      h2 {
+        font-family: point-panther-bold;
+        font-size: 72px;
+      }
+      .font-area {
+        position: absolute;
+        top: 4%;
+        width: 91%;
+        z-index: 3;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        left: 50%;
+        margin-left: -45%;
+      }
+      .text-left,
+      .text-right {
+        position: absolute;
+        top: 4%;
+        z-index: 3;
+      }
+      .text-left {
+        left: 0%;
+      }
+      .text-right {
+        width: 500px;
+        right: 0%;
+        text-align: center;
+      }
+      .text-right h1 {
+        text-align: center;
+        position: relative;
+      }
     </style>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import {
-            getDatabase,
-            ref,
-            set,
-            onValue,
-        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyB5s02d9k74UBszvN7yY62bQLWXx3-vPHc",
-            authDomain: "prueba-42594.firebaseapp.com",
-            databaseURL: "https://prueba-42594-default-rtdb.firebaseio.com",
-            projectId: "prueba-42594",
-            storageBucket: "prueba-42594.appspot.com",
-            messagingSenderId: "89697442606",
-            appId: "1:89697442606:web:f5e0ea8c42ab78c405f8bf",
-            measurementId: "G-553VK9YX52",
-        };
+      const firebaseConfig = {
+        apiKey: "AIzaSyB5s02d9k74UBszvN7yY62bQLWXx3-vPHc",
+        authDomain: "prueba-42594.firebaseapp.com",
+        databaseURL: "https://prueba-42594-default-rtdb.firebaseio.com",
+        projectId: "prueba-42594",
+        storageBucket: "prueba-42594.appspot.com",
+        messagingSenderId: "89697442606",
+        appId: "1:89697442606:web:f5e0ea8c42ab78c405f8bf",
+        measurementId: "G-553VK9YX52",
+      };
 
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
 
-        function checkActivation() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const isActivated = urlParams.get("activated");
-            const isDeactivated = urlParams.get("deactivated");
-            if (isActivated === "true") {
-                askForMusic();
-            } else if (isDeactivated === "true") {
-                deactivateProposal();
-            }
+      function checkActivation() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const isActivated = urlParams.get("activated");
+        const isDeactivated = urlParams.get("deactivated");
+        if (isActivated === "true") {
+          askForMusic();
+        } else if (isDeactivated === "true") {
+          deactivateProposal();
         }
+      }
 
-        function askForMusic() {
-            const formattedMessage = "Ezra pregunta si te gustaría escuchar algo de música.";
-            let wantsMusic = false;
-            while (!wantsMusic) {
-                wantsMusic = confirm(formattedMessage);
-            }
-            if (wantsMusic) {
-                activateProposal();
-            }
+      function askForMusic() {
+        const formattedMessage =
+          "Ezra pregunta si te gustaría escuchar algo de música.";
+        let wantsMusic = false;
+        while (!wantsMusic) {
+          wantsMusic = confirm(formattedMessage);
         }
+        if (wantsMusic) {
+          activateProposal();
+        }
+      }
 
-        function activateProposal() {
-            const isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
-            if (isMobile) {
-                document.querySelector('.mobile-message').style.display = 'block';
-                document.body.style.backgroundColor = "black";
-            } else {
-                document.body.style.backgroundColor = "white";
-                // Insert the new design and content here
-                document.querySelector('.container').innerHTML = `
+      function activateProposal() {
+        const isMobile = window.matchMedia(
+          "only screen and (max-width: 768px)"
+        ).matches;
+        if (isMobile) {
+          document.querySelector(".mobile-message").style.display = "block";
+          document.body.style.backgroundColor = "black";
+        } else {
+          document.body.style.backgroundColor = "white";
+          // Insert the new design and content here
+          document.querySelector(".container").innerHTML = `
                     <img src="main.png" class="mainImg" alt="">
                     <div class="text-left">
                         <h1 id="heading1"></h1>
@@ -267,100 +306,96 @@
                             </ul>
                         </div>
                     </div>`;
-                startAnimationWithDelay();
-            }
-            set(ref(database, "activation"), { activated: true });
-            playMusic();
+          startAnimationWithDelay();
         }
+        set(ref(database, "activation"), { activated: true });
+        playMusic();
+      }
 
-        function deactivateProposal() {
-            document.body.style.backgroundColor = "black";
-            document.querySelector('.mobile-message').style.display = 'none';
-            set(ref(database, "activation"), { activated: false });
-            stopMusic();
-        }
+      function deactivateProposal() {
+        document.body.style.backgroundColor = "black";
+        document.querySelector(".mobile-message").style.display = "none";
+        set(ref(database, "activation"), { activated: false });
+        stopMusic();
+      }
 
-        function playMusic() {
-            const audio = document.getElementById("backgroundMusic");
-            audio
-                .play()
-                .then(() => {
-                    console.log("Música reproduciéndose");
-                })
-                .catch((error) => {
-                    console.error("Error al reproducir la música:", error);
-                });
-        }
+      function playMusic() {
+        const audio = document.getElementById("backgroundMusic");
+        audio
+          .play()
+          .then(() => {
+            console.log("Música reproduciéndose");
+          })
+          .catch((error) => {
+            console.error("Error al reproducir la música:", error);
+          });
+      }
 
-        function stopMusic() {
-            const audio = document.getElementById("backgroundMusic");
-            audio.pause();
-            audio.currentTime = 0;
-        }
+      function stopMusic() {
+        const audio = document.getElementById("backgroundMusic");
+        audio.pause();
+        audio.currentTime = 0;
+      }
 
-        // Array of headings to display
-        const headings = [
-            "Glory",
-            "Will You",
-            "Marry Me?"
-        ];
+      // Array of headings to display
+      const headings = ["Glory", "Will You", "Marry Me?"];
 
-        // Function to start the animation sequence with initial delay
-        function startAnimationWithDelay() {
-            setTimeout(() => {
-                animateHeading(0); // Start animating the first heading after delay
-            }, 2000); // Initial delay of 2000 milliseconds (2 seconds)
-        }
+      // Function to start the animation sequence with initial delay
+      function startAnimationWithDelay() {
+        setTimeout(() => {
+          animateHeading(0); // Start animating the first heading after delay
+        }, 2000); // Initial delay of 2000 milliseconds (2 seconds)
+      }
 
-        // Function to animate each heading with a letter typing effect
-        function animateHeading(index) {
-            let heading = headings[index];
-            let element = document.getElementById(`heading${index + 1}`);
-            let letters = heading.split('');
-            let typingSpeed = 200; // Typing speed for each letter
+      // Function to animate each heading with a letter typing effect
+      function animateHeading(index) {
+        let heading = headings[index];
+        let element = document.getElementById(`heading${index + 1}`);
+        let letters = heading.split("");
+        let typingSpeed = 200; // Typing speed for each letter
 
-            letters.forEach((letter, idx) => {
-                setTimeout(() => {
-                    element.textContent += letter;
-                }, idx * typingSpeed);
-            });
-
-            // Calculate total animation time for current heading
-            let animationTime = letters.length * typingSpeed;
-
-            // Move to the next heading after current one finishes
-            setTimeout(() => {
-                if (index < headings.length - 1) {
-                    animateHeading(index + 1);
-                }
-            }, animationTime + 100); // Wait 1 second after current heading finishes
-        }
-
-        const activationRef = ref(database, "activation");
-        onValue(activationRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data && data.activated) {
-                activateProposal();
-            } else {
-                deactivateProposal();
-            }
+        letters.forEach((letter, idx) => {
+          setTimeout(() => {
+            element.textContent += letter;
+          }, idx * typingSpeed);
         });
 
-        window.onload = checkActivation;
+        // Calculate total animation time for current heading
+        let animationTime = letters.length * typingSpeed;
+
+        // Move to the next heading after current one finishes
+        setTimeout(() => {
+          if (index < headings.length - 1) {
+            animateHeading(index + 1);
+          }
+        }, animationTime + 100); // Wait 1 second after current heading finishes
+      }
+
+      const activationRef = ref(database, "activation");
+      onValue(activationRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data && data.activated) {
+          activateProposal();
+        } else {
+          deactivateProposal();
+        }
+      });
+
+      window.onload = checkActivation;
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <audio id="backgroundMusic" loop>
-        <source src="./Music/Mazal.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
+      <source src="./Music/Mazal.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
     </audio>
     <div class="mobile-message">
-        <h1>Look Up</h1>
-        <div class="arrow">⬆️</div>
+      <h1>Look Up</h1>
+      <div class="arrow">⬆️</div>
     </div>
     <div class="container">
-        <!-- The new design and content will be injected here on activation -->
+      <!-- The new design and content will be injected here on activation -->
     </div>
-</body>
+  </body>
 </html>
 
